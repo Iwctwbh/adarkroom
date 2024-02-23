@@ -34,11 +34,11 @@ var auto = () => {
   // 伐木者 > 5 * 熏肉师
   // 在所有工作都能进行时 伐木者5 猎人12 陷阱师1 皮革师1 熏肉师1
 
-  if ($('#population').text().substring(3).split('/')[0] != '') {
-    if (
-      $('#workers_row_gatherer > .row_val').text() != '' &&
-      $('#workers_row_gatherer > .row_val').text() < 8
-    ) {
+  if (
+    $('#population').text().substring(3).split('/')[0] != '' &&
+    $('#workers_row_gatherer > .row_val').text() != ''
+  ) {
+    if ($('#workers_row_gatherer > .row_val').text() < 8) {
       // 优先保证木头
       // 木头不足时清空其他所有工作
       while (
