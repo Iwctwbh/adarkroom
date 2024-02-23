@@ -60,7 +60,9 @@ var auto = () => {
         while (
           $('#workers_row_gatherer > .row_val').text() > 5 &&
           $('#workers_row_hunter > .row_val').text() < 12 &&
-          $('#workers_row_hunter > .row_val').text() != ''
+          $('#workers_row_hunter > .row_val').text() != '' &&
+          $('#workers_row_gatherer > .row_val').text() / 2 >
+            $('#workers_row_hunter > .row_val').text()
         ) {
           $('#workers_row_hunter .upBtn').trigger('click');
         }
