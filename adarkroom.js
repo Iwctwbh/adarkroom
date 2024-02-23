@@ -38,7 +38,7 @@ var auto = () => {
     $('#population').text().substring(3).split('/')[0] != '' &&
     $('#workers_row_gatherer > .row_val').text() != ''
   ) {
-    if ($('#workers_row_gatherer > .row_val').text() < 8) {
+    if ($('#workers_row_gatherer > .row_val').text() < 5) {
       // 优先保证木头
       // 木头不足时清空其他所有工作
       while (
@@ -59,32 +59,48 @@ var auto = () => {
       ) {
         while (
           $('#workers_row_gatherer > .row_val').text() > 5 &&
-          $('#workers_row_hunter > .row_val').text() < 12
+          $('#workers_row_hunter > .row_val').text() < 12 &&
+          $('#workers_row_hunter > .row_val').text() != ''
         ) {
           $('#workers_row_hunter .upBtn').trigger('click');
         }
       } else {
-        if ($('#workers_row_charcutier > .row_val').text() == '0') {
-          $('#workers_row_charcutier .upBtn').trigger('click');
-        } else if ($('#workers_row_charcutier > .row_val').text() > 1) {
-          $('#workers_row_charcutier .dnBtn').trigger('click');
+        if ($('#workers_row_gatherer > .row_val').text() > 5) {
+          if ($('#workers_row_charcutier > .row_val').text() == '0') {
+            $('#workers_row_charcutier .upBtn').trigger('click');
+          } else if ($('#workers_row_charcutier > .row_val').text() > 1) {
+            $('#workers_row_charcutier .dnBtn').trigger('click');
+          }
         }
-        if ($('#workers_row_tanner > .row_val').text() == '0') {
-          $('#workers_row_tanner .upBtn').trigger('click');
-        } else if ($('#workers_row_tanner > .row_val').text() > 1) {
-          $('#workers_row_tanner .dnBtn').trigger('click');
+        if ($('#workers_row_gatherer > .row_val').text() > 5) {
+          if ($('#workers_row_tanner > .row_val').text() == '0') {
+            $('#workers_row_tanner .upBtn').trigger('click');
+          } else if ($('#workers_row_tanner > .row_val').text() > 1) {
+            $('#workers_row_tanner .dnBtn').trigger('click');
+          }
         }
-        if ($('#workers_row_trapper > .row_val').text() == '0') {
-          $('#workers_row_trapper .upBtn').trigger('click');
-        } else if ($('#workers_row_trapper > .row_val').text() > 1) {
-          $('#workers_row_trapper .dnBtn').trigger('click');
+        if ($('#workers_row_gatherer > .row_val').text() > 5) {
+          if ($('#workers_row_trapper > .row_val').text() == '0') {
+            $('#workers_row_trapper .upBtn').trigger('click');
+          } else if ($('#workers_row_trapper > .row_val').text() > 1) {
+            $('#workers_row_trapper .dnBtn').trigger('click');
+          }
         }
 
-        while (
-          $('#workers_row_gatherer > .row_val').text() / 2 >
-          $('#workers_row_hunter > .row_val').text()
-        ) {
-          $('#workers_row_hunter .upBtn').trigger('click');
+        if ($('#workers_row_gatherer > .row_val').text() != '') {
+          while (
+            $('#workers_row_gatherer > .row_val').text() / 2 >
+            $('#workers_row_hunter > .row_val').text()
+          ) {
+            $('#workers_row_hunter .upBtn').trigger('click');
+          }
+
+          while (
+            $('#workers_row_gatherer > .row_val').text() / 2 <
+            $('#workers_row_hunter > .row_val').text()
+          ) {
+            $('#workers_row_hunter .dnBtn').trigger('click');
+          }
         }
       }
     }
