@@ -22,6 +22,10 @@ var auto = () => {
   $('#build_waterskin').not('.disabled').trigger('click');
   $('#build_rucksack').not('.disabled').trigger('click');
   $('#build_l-armour').not('.disabled').trigger('click');
+  $('#build_cask').not('.disabled').trigger('click');
+  $('#build_wagon').not('.disabled').trigger('click');
+  $('#build_i-armour').not('.disabled').trigger('click');
+  $('#build_i-armour').not('.disabled').trigger('click');
 
   // 自动调整工作
   // workers_row_gatherer 伐木者 木头 +1
@@ -29,10 +33,16 @@ var auto = () => {
   // workers_row_hunter 猎人 毛皮 +0.5 肉 +0.5
   // workers_row_tanner 皮革师 毛皮 -5 皮革 +1
   // workers_row_trapper 陷阱师 肉 -1 诱饵 + 1
+  // steelworker 炼钢工人 铁 -1 煤 -1 钢 +1
+  // workers_row_coal-miner 煤矿工人 熏肉 -1 煤矿 +1
+  // workers_row_iron-miner 铁矿工人 熏肉 -1 铁 +1
   // 猎人 > (陷阱师 + 5 * 熏肉师) * 2
   // 猎人 > 10 * 皮革师
   // 伐木者 > 5 * 熏肉师
-  // 在所有工作都能进行时 伐木者5 猎人12 陷阱师1 皮革师1 熏肉师1
+  // 熏肉师 > 1 * 煤矿工人 + 1 * 铁矿工人
+  // 煤矿工人 > 炼钢工人
+  // 铁矿工人 > 炼钢工人
+  // 在所有工作都能进行时 伐木者10 猎人22 陷阱师1 皮革师1 熏肉师2 煤矿工人1 铁矿工人1 炼钢工人1
 
   if (
     $('#population').text().substring(3).split('/')[0] != '' &&
@@ -115,3 +125,6 @@ var auto = () => {
   }
 };
 auto();
+
+// 所有资源*10
+// let j = JSON.parse(localStorage.getItem('gameState'));for (let key in j.stores){j.stores[key] = j.stores[key] * 10}localStorage.setItem('gameState', JSON.stringify(j));window.location.reload();
