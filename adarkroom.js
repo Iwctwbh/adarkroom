@@ -44,79 +44,80 @@ var auto = () => {
   // 铁矿工人 > 炼钢工人
   // 在所有工作都能进行时 伐木者10 猎人22 陷阱师1 皮革师1 熏肉师2 煤矿工人1 铁矿工人1 炼钢工人1
 
-  if (
-    $('#population').text().substring(3).split('/')[0] != '' &&
-    $('#workers_row_gatherer > .row_val').text() != ''
-  ) {
-    if ($('#workers_row_gatherer > .row_val').text() < 5) {
-      // 优先保证木头
-      // 木头不足时清空其他所有工作
-      while (
-        $('.workerRow > .row_val')
-          .text()
-          .replace($('#workers_row_gatherer > .row_val').text(), '') !=
-          '0000' &&
-        $('#workers_row_gatherer > .row_val').text() !=
-          $('#population').text().substring(3).split('/')[0]
-      ) {
-        $('.workerRow .dnManyBtn').trigger('click');
-      }
-    } else {
-      // 木头充足时优先保证猎人
-      if (
-        $('#workers_row_hunter > .row_val').text() != '' &&
-        $('#workers_row_hunter > .row_val').text() < 12
-      ) {
-        while (
-          $('#workers_row_gatherer > .row_val').text() > 5 &&
-          $('#workers_row_hunter > .row_val').text() < 12 &&
-          $('#workers_row_hunter > .row_val').text() != '' &&
-          $('#workers_row_gatherer > .row_val').text() / 2 >
-            $('#workers_row_hunter > .row_val').text()
-        ) {
-          $('#workers_row_hunter .upBtn').trigger('click');
-        }
-      } else {
-        if ($('#workers_row_gatherer > .row_val').text() > 5) {
-          if ($('#workers_row_charcutier > .row_val').text() == '0') {
-            $('#workers_row_charcutier .upBtn').trigger('click');
-          } else if ($('#workers_row_charcutier > .row_val').text() > 1) {
-            $('#workers_row_charcutier .dnBtn').trigger('click');
-          }
-        }
-        if ($('#workers_row_gatherer > .row_val').text() > 5) {
-          if ($('#workers_row_tanner > .row_val').text() == '0') {
-            $('#workers_row_tanner .upBtn').trigger('click');
-          } else if ($('#workers_row_tanner > .row_val').text() > 1) {
-            $('#workers_row_tanner .dnBtn').trigger('click');
-          }
-        }
-        if ($('#workers_row_gatherer > .row_val').text() > 5) {
-          if ($('#workers_row_trapper > .row_val').text() == '0') {
-            $('#workers_row_trapper .upBtn').trigger('click');
-          } else if ($('#workers_row_trapper > .row_val').text() > 1) {
-            $('#workers_row_trapper .dnBtn').trigger('click');
-          }
-        }
+    // 不建议使用
+//   if (
+//     $('#population').text().substring(3).split('/')[0] != '' &&
+//     $('#workers_row_gatherer > .row_val').text() != ''
+//   ) {
+//     if ($('#workers_row_gatherer > .row_val').text() < 5) {
+//       // 优先保证木头
+//       // 木头不足时清空其他所有工作
+//       while (
+//         $('.workerRow > .row_val')
+//           .text()
+//           .replace($('#workers_row_gatherer > .row_val').text(), '') !=
+//           '0000' &&
+//         $('#workers_row_gatherer > .row_val').text() !=
+//           $('#population').text().substring(3).split('/')[0]
+//       ) {
+//         $('.workerRow .dnManyBtn').trigger('click');
+//       }
+//     } else {
+//       // 木头充足时优先保证猎人
+//       if (
+//         $('#workers_row_hunter > .row_val').text() != '' &&
+//         $('#workers_row_hunter > .row_val').text() < 12
+//       ) {
+//         while (
+//           $('#workers_row_gatherer > .row_val').text() > 5 &&
+//           $('#workers_row_hunter > .row_val').text() < 12 &&
+//           $('#workers_row_hunter > .row_val').text() != '' &&
+//           $('#workers_row_gatherer > .row_val').text() / 2 >
+//             $('#workers_row_hunter > .row_val').text()
+//         ) {
+//           $('#workers_row_hunter .upBtn').trigger('click');
+//         }
+//       } else {
+//         if ($('#workers_row_gatherer > .row_val').text() > 5) {
+//           if ($('#workers_row_charcutier > .row_val').text() == '0') {
+//             $('#workers_row_charcutier .upBtn').trigger('click');
+//           } else if ($('#workers_row_charcutier > .row_val').text() > 1) {
+//             $('#workers_row_charcutier .dnBtn').trigger('click');
+//           }
+//         }
+//         if ($('#workers_row_gatherer > .row_val').text() > 5) {
+//           if ($('#workers_row_tanner > .row_val').text() == '0') {
+//             $('#workers_row_tanner .upBtn').trigger('click');
+//           } else if ($('#workers_row_tanner > .row_val').text() > 1) {
+//             $('#workers_row_tanner .dnBtn').trigger('click');
+//           }
+//         }
+//         if ($('#workers_row_gatherer > .row_val').text() > 5) {
+//           if ($('#workers_row_trapper > .row_val').text() == '0') {
+//             $('#workers_row_trapper .upBtn').trigger('click');
+//           } else if ($('#workers_row_trapper > .row_val').text() > 1) {
+//             $('#workers_row_trapper .dnBtn').trigger('click');
+//           }
+//         }
 
-        if ($('#workers_row_gatherer > .row_val').text() != '') {
-          while (
-            $('#workers_row_gatherer > .row_val').text() / 2 >
-            $('#workers_row_hunter > .row_val').text()
-          ) {
-            $('#workers_row_hunter .upBtn').trigger('click');
-          }
+//         if ($('#workers_row_gatherer > .row_val').text() != '') {
+//           while (
+//             $('#workers_row_gatherer > .row_val').text() / 2 >
+//             $('#workers_row_hunter > .row_val').text()
+//           ) {
+//             $('#workers_row_hunter .upBtn').trigger('click');
+//           }
 
-          while (
-            $('#workers_row_gatherer > .row_val').text() / 2 <
-            $('#workers_row_hunter > .row_val').text()
-          ) {
-            $('#workers_row_hunter .dnBtn').trigger('click');
-          }
-        }
-      }
-    }
-  }
+//           while (
+//             $('#workers_row_gatherer > .row_val').text() / 2 <
+//             $('#workers_row_hunter > .row_val').text()
+//           ) {
+//             $('#workers_row_hunter .dnBtn').trigger('click');
+//           }
+//         }
+//       }
+//     }
+//   }
 
   if (flag) {
     setTimeout(() => {
@@ -126,5 +127,17 @@ var auto = () => {
 };
 auto();
 
+// 初始化
+// let j = JSON.parse(localStorage.getItem('gameState'));
 // 所有资源*10
-// let j = JSON.parse(localStorage.getItem('gameState'));for (let key in j.stores){j.stores[key] = j.stores[key] * 10}localStorage.setItem('gameState', JSON.stringify(j));window.location.reload();
+// for (let key in j.stores) { j.stores[key] = j.stores[key] * 10 }
+// 解锁所有地图
+// j.game.world.mask = j.game.world.mask.map((obj)=>obj.map((o)=>true))
+// 当前人口+10
+// j.game.population += 10
+// 人口上限+4(相当于小屋+1)
+// j.game.buildings.hut += 10
+// 解锁所有科技
+// j.game.builder.level = 4
+// 保存修改
+// localStorage.setItem('gameState', JSON.stringify(j)); window.location.reload();
